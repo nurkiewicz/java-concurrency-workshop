@@ -1,0 +1,14 @@
+type: marketplace
+title: Java Core Concurrency
+language: English
+summary: Java core concurrency primitives
+programming_language: Java
+content:
+- Threads
+- Thread pools
+- Cancellation
+- CompletableFuture
+- Data structures
+- Monitoring
+- Synchronization
+- Java Memory Model

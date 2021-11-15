@@ -1,0 +1,1 @@
+Create an `Executor` that uses just one thread.
