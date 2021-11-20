@@ -21,7 +21,7 @@ public class Tests {
     assertThat(threadName).hasValue(null);
     assertThat(thread).isNotNull();
     thread.start();
-    ConcurrentAssertions.waitFor(latch);
+    ConcurrentAssertions.waitFor(latch, "condition");
     assertThat(threadName).hasValue("Course");
   }
 }

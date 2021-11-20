@@ -1,5 +1,4 @@
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.Test;
 
@@ -19,6 +18,6 @@ public class Tests {
 		assertThat(thread).isNotNull();
 		assertThat(thread).isOfAnyClassIn(Thread.class);
 		thread.start();
-		ConcurrentAssertions.waitFor(latch);
+		ConcurrentAssertions.waitFor(latch, "condition");
 	}
 }

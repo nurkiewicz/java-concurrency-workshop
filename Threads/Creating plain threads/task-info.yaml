@@ -1,7 +1,7 @@
 type: edu
-solution_hidden: false
 files:
 - name: src/Task.java
   visible: true
-- name: test/Tests.java
+- name: test/Tests2.java
   visible: true
+solution_hidden: false

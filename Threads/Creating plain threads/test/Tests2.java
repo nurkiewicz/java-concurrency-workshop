@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Tests {
+public class Tests2 {
   @Test
   public void testSolution() throws InterruptedException {
     AtomicReference<String> threadName = new AtomicReference<>();
@@ -21,7 +21,7 @@ public class Tests {
     assertThat(threadName).hasValue(null);
     assertThat(thread).isNotNull();
     thread.start();
-    ConcurrentAssertions.waitFor(latch);
+    ConcurrentAssertions.waitFor(latch, "condition");
     assertThat(threadName.get()).startsWith("Thread-");
   }
 }
