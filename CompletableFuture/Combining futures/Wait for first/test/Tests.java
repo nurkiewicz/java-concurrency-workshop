@@ -1,10 +1,29 @@
-import org.junit.Assert;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class Tests {
-  @Test
-  public void testSolution() {
-    // put your test here
-    Assert.fail("Tests not implemented for the task");
-  }
+
+	@Test
+	public void testSolution() throws ExecutionException, InterruptedException, TimeoutException {
+		CompletableFuture<Integer> f = new Task().firstOf(new CompletableFuture<>(), CompletableFuture.completedFuture(1));
+		assertThat(f.get(1, TimeUnit.SECONDS)).isEqualTo(1);
+	}
+
+	@Test
+	public void testSolution2() throws ExecutionException, InterruptedException, TimeoutException {
+		CompletableFuture<Integer> f = new Task().firstOf(CompletableFuture.completedFuture(2), new CompletableFuture<>());
+		assertThat(f.get(1, TimeUnit.SECONDS)).isEqualTo(2);
+	}
+
+	@Test
+	public void doesNotBlock() throws ExecutionException, InterruptedException, TimeoutException {
+		CompletableFuture<Integer> f = new Task().firstOf(new CompletableFuture<>(), new CompletableFuture<>());
+	}
+
 }
