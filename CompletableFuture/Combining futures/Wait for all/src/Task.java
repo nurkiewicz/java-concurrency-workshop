@@ -1,3 +1,14 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.concurrent.CompletableFuture;
+
 public class Task {
-  //put your task here
+  CompletableFuture<LocalDateTime> combine(CompletableFuture<LocalDate> date, CompletableFuture<LocalTime> time) {
+//	  throw new UnsupportedOperationException("TODO");
+//	  return CompletableFuture.completedFuture(date.join().atTime(time.join()));
+	  return CompletableFuture.allOf(date, time)
+			  .thenApply(vd -> date.join().atTime(time.join()));
+
+  }
 }

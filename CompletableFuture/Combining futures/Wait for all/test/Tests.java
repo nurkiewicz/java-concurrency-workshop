@@ -1,10 +1,29 @@
-import org.junit.Assert;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Tests {
   @Test
-  public void testSolution() {
-    // put your test here
-    Assert.fail("Tests not implemented for the task");
+  public void testSolution() throws ExecutionException, InterruptedException, TimeoutException {
+    CompletableFuture<LocalDateTime> future = new Task().combine(
+            CompletableFuture.completedFuture(LocalDate.of(2022, 1, 1)),
+            CompletableFuture.completedFuture(LocalTime.of(15, 10)));
+    assertThat(future.get(1, TimeUnit.SECONDS)).isEqualTo(LocalDateTime.of(2022, 1, 1, 15, 10));
+  }
+
+  @Test(timeout = 1000)
+  public void testShouldNotBlock() {
+    new Task().combine(
+            new CompletableFuture<>(),
+            new CompletableFuture<>());
+    //does not block
   }
 }
