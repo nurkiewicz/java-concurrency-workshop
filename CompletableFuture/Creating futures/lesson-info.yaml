@@ -1,1 +1,3 @@
-{}
+content:
+- Create in specified thread pool
+- Complete on callback

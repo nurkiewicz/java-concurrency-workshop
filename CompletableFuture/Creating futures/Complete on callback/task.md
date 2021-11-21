@@ -1,0 +1,1 @@
+Create a `CompletableFuture` that completes when `onMessage` callback is invoked.
