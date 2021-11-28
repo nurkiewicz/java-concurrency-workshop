@@ -13,8 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Tests {
 
-	public static final int PLAYERS = 20000;
-	public static final int SCORE_RANGE = 200;
+	public static final int PLAYERS = 50000;
+	public static final int SCORE_RANGE = 100;
 	private final Task task = new Task();
 
 	@Test
@@ -29,7 +29,7 @@ public class Tests {
 		);
 	}
 
-	@RepeatedTest(10)
+	@RepeatedTest(value = 10, name = "tonOfConcurrentEvents {currentRepetition} of {totalRepetitions}")
 	public void tonOfConcurrentEvents() {
 		Map<String, Integer> scores = task.createScoresMap();
 		List<Map.Entry<String, Integer>> actions = IntStream.range(0, PLAYERS)
