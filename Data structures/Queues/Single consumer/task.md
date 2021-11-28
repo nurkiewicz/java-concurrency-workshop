@@ -1,8 +1,8 @@
-Write code that consumes and runs `Job`s from a queue.
-Consuming should be single-threaded, i.e. tasks should not run concurrently.
+When there's just a single consumer of a queue, jobs are run sequentially, not concurrently.
 
-<div class="hint">
+# Task
 
-* Use `java.util.Queue.poll()` to fetch jobs
-
-</div>
+Your jobs have an `int key` property.
+Jobs with the same key cannot run concurrently.
+But jobs with different `key` are free to run at the same time.
+How do you implement such a consumer?
