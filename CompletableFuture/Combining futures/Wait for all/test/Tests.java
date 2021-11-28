@@ -6,7 +6,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +20,8 @@ public class Tests {
     assertThat(future.get(1, TimeUnit.SECONDS)).isEqualTo(LocalDateTime.of(2022, 1, 1, 15, 10));
   }
 
-  @Test(timeout = 1000)
+  @Test
+  @Timeout(1)
   public void testShouldNotBlock() {
     new Task().combine(
             new CompletableFuture<>(),

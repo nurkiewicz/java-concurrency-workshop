@@ -1,6 +1,6 @@
 import java.util.concurrent.ExecutorService;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Tests4 {
   @Test

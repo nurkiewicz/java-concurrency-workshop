@@ -1,14 +1,11 @@
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.Semaphore;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Tests {
 
@@ -19,7 +16,8 @@ public class Tests {
         for (int i = 0; i <= 10; i++) {
             executor.submit(() -> task(semaphore));
         }
-        assertEquals(10, executor.shutdownNow().size());
+
+		assertThat(executor.shutdownNow().size()).isEqualTo(10);
 	}
 
 	@Test
@@ -36,7 +34,7 @@ public class Tests {
 			//expected
 		}
 
-		assertEquals(10, executor.shutdownNow().size());
+		assertThat(executor.shutdownNow().size()).isEqualTo(10);
 	}
 
 	private Object task(Semaphore semaphore) throws InterruptedException {

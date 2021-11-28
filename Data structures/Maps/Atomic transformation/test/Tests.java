@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import static java.util.Map.entry;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,7 +29,7 @@ public class Tests {
 		);
 	}
 
-	@Test
+	@RepeatedTest(10)
 	public void tonOfConcurrentEvents() {
 		Map<String, Integer> scores = task.createScoresMap();
 		List<Map.Entry<String, Integer>> actions = IntStream.range(0, PLAYERS)
