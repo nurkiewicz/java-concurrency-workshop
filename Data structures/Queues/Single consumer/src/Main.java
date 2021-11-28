@@ -1,3 +1,6 @@
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executors;
+
 public class Main {
 
 	void consume(BlockingQueue<Runnable> queue) {
