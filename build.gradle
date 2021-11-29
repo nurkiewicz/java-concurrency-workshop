@@ -26,10 +26,10 @@ subprojects {
     }
 
     dependencies {
-        testCompile 'org.junit.jupiter:junit-jupiter:5.8.2'
-        compile 'org.assertj:assertj-core:3.21.0'
-        compile 'ch.qos.logback:logback-classic:1.2.7'
-        compile 'com.google.guava:guava:31.0.1-jre'
+        implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+        implementation 'org.assertj:assertj-core:3.21.0'
+        implementation 'ch.qos.logback:logback-classic:1.2.7'
+        implementation 'com.google.guava:guava:31.0.1-jre'
         implementation 'org.mockito:mockito-core:4.1.0'
     }
 
@@ -65,7 +65,7 @@ project(':util') {
 
 configure(subprojects.findAll { it.name != 'util' }) {
     dependencies {
-        compile project(':util').sourceSets.main.output
-        testCompile project(':util').sourceSets.test.output
+        implementation project(':util').sourceSets.main.output
+        implementation project(':util').sourceSets.test.output
     }
 }
