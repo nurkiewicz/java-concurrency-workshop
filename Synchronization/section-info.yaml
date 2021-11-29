@@ -1,4 +1,4 @@
 content:
-- BlockingQueue
+- Exclusive locks
 - CountDownLatch
 - Semaphore
