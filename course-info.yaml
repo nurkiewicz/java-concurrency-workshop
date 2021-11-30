@@ -5,6 +5,7 @@ summary: Java core concurrency exercises
 programming_language: Java
 programming_language_version: 11
 content:
+- Introduction
 - Threads
 - Thread pools
 - Cancellation
