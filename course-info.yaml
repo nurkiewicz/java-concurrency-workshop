@@ -5,7 +5,7 @@ summary: Java core concurrency exercises
 vendor:
   name: Tomek
 programming_language: Java
-programming_language_version: 11 11 11 11
+programming_language_version: 11
 content:
 - Introduction
 - Threads
