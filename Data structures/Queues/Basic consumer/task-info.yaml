@@ -3,8 +3,8 @@ files:
 - name: src/Task.java
   visible: true
 - name: test/Tests.java
-  visible: false
+  visible: true
 - name: src/Job.java
   visible: true
 - name: test/TestJob.java
-  visible: false
+  visible: true

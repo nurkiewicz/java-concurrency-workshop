@@ -1,9 +1,10 @@
-type: marketplace
+type: edu
 title: Java Core Concurrency
 language: English
-summary: Java core concurrency exercises
+summary: Java core concurrency
 vendor:
-  name: Tomek
+  name: Tomasz Nurkiewicz
+  url: https://nurkiewicz.com
 programming_language: Java
 programming_language_version: 11
 content:
