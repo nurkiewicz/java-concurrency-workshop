@@ -5,6 +5,8 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.google.common.base.Throwables;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ConcurrentAssertions {
@@ -25,12 +27,7 @@ public class ConcurrentAssertions {
 		try {
 			future.get(5, TimeUnit.SECONDS);
 		} catch (ExecutionException e) {
-			if (e.getCause() instanceof RuntimeException) {
-				throw ((RuntimeException) e.getCause());
-			}
-			if (e.getCause() instanceof Error) {
-				throw ((Error) e.getCause());
-			}
+			Throwables.throwIfUnchecked(e.getCause());
 			throw new RuntimeException(e);
 		} catch (TimeoutException e) {
 			throw new RuntimeException("Waited too long", e);
