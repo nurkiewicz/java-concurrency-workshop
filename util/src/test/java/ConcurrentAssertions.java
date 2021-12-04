@@ -11,10 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ConcurrentAssertions {
 
-	public static void waitFor(CountDownLatch latch, String waitingForWhat) throws InterruptedException {
-		assertThat(latch.await(3, TimeUnit.SECONDS))
-				.describedAs("Waiting for " + waitingForWhat)
-				.isTrue();
+	public static void waitFor(CountDownLatch latch, String waitingForWhat) {
+		try {
+			assertThat(latch.await(3, TimeUnit.SECONDS))
+					.describedAs("Waiting for " + waitingForWhat)
+					.isTrue();
+		} catch (InterruptedException e) {
+			throw new RuntimeException("Waiting for " + waitingForWhat + " was interrupted", e);
+		}
 	}
 
 	public static void acquire(Semaphore semaphore, String tooManyOfWhat) throws InterruptedException {
@@ -23,9 +27,9 @@ public class ConcurrentAssertions {
 				.isTrue();
 	}
 
-	public static <T> void waitForFuture(Future<T> future) {
+	public static <T> T waitFor(Future<T> future) {
 		try {
-			future.get(5, TimeUnit.SECONDS);
+			return future.get(5, TimeUnit.SECONDS);
 		} catch (ExecutionException e) {
 			Throwables.throwIfUnchecked(e.getCause());
 			throw new RuntimeException(e);
@@ -37,7 +41,7 @@ public class ConcurrentAssertions {
 	}
 
 	public static <T> void waitForFutures(Iterable<Future<T>> futures) throws InterruptedException {
-        futures.forEach(ConcurrentAssertions::waitForFuture);
+        futures.forEach(ConcurrentAssertions::waitFor);
     }
 
 }
