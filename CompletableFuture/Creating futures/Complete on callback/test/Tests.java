@@ -13,12 +13,7 @@ public class Tests {
 	@Test
 	public void testSolution() {
 		AtomicReference<Consumer<String>> callback = new AtomicReference<>();
-		MessageListener listener = new MessageListener() {
-			@Override
-			public void onMessage(Consumer<String> consumer) {
-				callback.set(consumer);
-			}
-		};
+		MessageListener listener = callback::set;
 		CompletableFuture<String> future = new Task().create(listener);
 		assertThat(callback.get())
 				.describedAs("User defined callback for onMessage")

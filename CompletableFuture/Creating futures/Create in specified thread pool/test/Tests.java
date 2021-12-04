@@ -19,7 +19,7 @@ public class Tests {
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 5,
 				60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
 				threadFactory);
-		CompletableFuture<String> future = new Task().create(threadPoolExecutor);
-		assertThat(future.get(1, TimeUnit.SECONDS)).matches("CF-Pool-\\d+");
+		CompletableFuture<String> future = new Task().async(() -> Thread.currentThread().getName(), threadPoolExecutor);
+		assertThat(ConcurrentAssertions.waitFor(future)).startsWith("CF-Pool-");
 	}
 }
