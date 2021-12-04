@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -12,8 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ConcurrentAssertions {
 
 	public static void waitFor(CountDownLatch latch, String waitingForWhat) {
+		waitFor(latch, waitingForWhat, Duration.ofSeconds(3));
+	}
+
+	public static void waitFor(CountDownLatch latch, String waitingForWhat, Duration timeout) {
 		try {
-			assertThat(latch.await(3, TimeUnit.SECONDS))
+			assertThat(latch.await(timeout.toMillis(), TimeUnit.MILLISECONDS))
 					.describedAs("Waiting for " + waitingForWhat)
 					.isTrue();
 		} catch (InterruptedException e) {
