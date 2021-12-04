@@ -1,4 +1,5 @@
 content:
 - Handling interruption
+- Checking interruption
 - Stopping threads
 - Cancelling tasks
