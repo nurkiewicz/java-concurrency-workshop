@@ -1,7 +1,7 @@
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 
-public class Main {
+public class Task {
 
 	void consume(BlockingQueue<Runnable> queue) {
 		Executors.newSingleThreadExecutor().submit(() -> {

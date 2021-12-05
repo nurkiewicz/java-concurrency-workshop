@@ -26,7 +26,7 @@ public class ConcurrentAssertions {
 		}
 	}
 
-	public static void acquire(Semaphore semaphore, String tooManyOfWhat) throws InterruptedException {
+	public static void acquire(Semaphore semaphore, String tooManyOfWhat) {
 		assertThat(semaphore.tryAcquire())
 				.describedAs("Too many " + tooManyOfWhat)
 				.isTrue();
