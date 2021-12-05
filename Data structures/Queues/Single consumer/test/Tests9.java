@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Tests implements WithAssertions {
+public class Tests9 implements WithAssertions {
 
 	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	public static final int TOTAL_TASKS = 4;
@@ -28,13 +28,13 @@ public class Tests implements WithAssertions {
 		CountDownLatch howManyPending = new CountDownLatch(TOTAL_TASKS);
 		IntStream.rangeClosed(1, TOTAL_TASKS).forEach(i ->
 				queue.add(ErrorCollecting.collectErrors(errors, () -> {
-					events.log("+ " + i);
-					ConcurrentAssertions.acquire(concurrencyControl, "concurrent jobs being processed");
+					events.log("START " + i);
+					ConcurrentAssertions.tryAcquire(concurrencyControl, "concurrent jobs being processed");
 					try {
 						ConcurrentAssertions.waitFor(waitForAll, "all jobs to be processed");
 					} finally {
 						concurrencyControl.release();
-						events.log("- " + i);
+						events.log("STOP " + i);
 						howManyPending.countDown();
 					}
 				})));
@@ -43,10 +43,10 @@ public class Tests implements WithAssertions {
 		ConcurrentAssertions.waitFor(howManyPending, "all jobs to terminate");
 		assertThat(errors.drainToList()).isEmpty();
 		assertThat(events.drainToList()).containsExactly(
-				"+ 1", "- 1",
-				"+ 2", "- 2",
-				"+ 3", "- 3",
-				"+ 4", "- 4"
+				"START 1", "STOP 1",
+				"START 2", "STOP 2",
+				"START 3", "STOP 3",
+				"START 4", "STOP 4"
 		);
 	}
 }

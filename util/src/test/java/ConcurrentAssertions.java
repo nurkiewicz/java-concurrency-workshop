@@ -26,7 +26,7 @@ public class ConcurrentAssertions {
 		}
 	}
 
-	public static void acquire(Semaphore semaphore, String tooManyOfWhat) {
+	public static void tryAcquire(Semaphore semaphore, String tooManyOfWhat) {
 		assertThat(semaphore.tryAcquire())
 				.describedAs("Too many " + tooManyOfWhat)
 				.isTrue();
