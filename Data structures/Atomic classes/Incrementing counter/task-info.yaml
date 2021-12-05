@@ -1,6 +1,4 @@
-type: edu
+type: theory
 files:
 - name: src/Task.java
-  visible: true
-- name: test/Tests.java
   visible: true

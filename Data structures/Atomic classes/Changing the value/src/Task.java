@@ -1,3 +1,18 @@
+import java.util.concurrent.atomic.AtomicLong;
+
 public class Task {
-  //put your task here
+
+	void next(AtomicLong in) {
+//		in.set(collatz(in.get()));
+		in.updateAndGet(this::collatz);
+	}
+
+	private long collatz(long in) {
+		if (in % 2 == 0) {
+			return in / 2;
+		} else {
+			return 3 * in + 1;
+		}
+	}
+
 }
