@@ -1,3 +1,17 @@
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Task {
-  //put your task here
+
+	private final AtomicBoolean lock = new AtomicBoolean(false);
+
+	boolean tryLock() {
+//		throw new UnsupportedOperationException("TODO");
+		return lock.compareAndSet(false, true);
+	}
+
+	boolean tryUnlock() {
+//		throw new UnsupportedOperationException("TODO");
+		return lock.compareAndSet(true, false);
+	}
+
 }

@@ -11,7 +11,7 @@ public class Events<T> {
 
 	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private final BlockingQueue<T> queue = new ArrayBlockingQueue<>(1000);
+	private final BlockingQueue<T> queue = new ArrayBlockingQueue<>(1_000_000);
 
 	void log(T event) {
 		log.info("Event {}", event);
