@@ -35,12 +35,12 @@ public class Tests {
 		thread.interrupt();
 	}
 
-	private Thread runInSeparateThread(int howMany) throws InterruptedException {
+	private Thread runInSeparateThread(int howManyTasks) throws InterruptedException {
 		return new Thread(() -> {
 			try {
 				Task task = new Task();
 				BlockingQueue<Job> jobs = new ArrayBlockingQueue<>(100);
-				IntStream.range(0, howMany).forEach(i -> jobs.add(this.jobs[i]));
+				IntStream.range(0, howManyTasks).forEach(i -> jobs.add(this.jobs[i]));
 				task.acceptJobs(jobs);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
