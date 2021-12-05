@@ -4,3 +4,5 @@ files:
   visible: true
 - name: test/Tests.java
   visible: false
+- name: src/CustomerJob.java
+  visible: true

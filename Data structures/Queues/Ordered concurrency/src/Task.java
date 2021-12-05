@@ -1,3 +1,7 @@
+import java.util.concurrent.BlockingQueue;
+
 public class Task {
-  //put your task here
+  void consume(BlockingQueue<CustomerJob> queue) {
+
+  }
 }
