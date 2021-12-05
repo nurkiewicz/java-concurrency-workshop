@@ -3,25 +3,23 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import org.assertj.core.api.AbstractIntegerAssert;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Tests {
 
-	@Test
-	public void testSolution() throws ExecutionException, InterruptedException, TimeoutException {
-      Task task = new Task();
+	@ParameterizedTest
+	@CsvSource({
+			"0,     0",
+			"42,    42",
+			"-1,    -1"
+	})
+	public void testSolution(String s, int i) throws ExecutionException, InterruptedException, TimeoutException {
+		Task task = new Task();
+		CompletableFuture<String> future = CompletableFuture.completedFuture(s);
+		assertThat(task.transform(future).get(1, TimeUnit.SECONDS)).isEqualTo(i);
+	}
 
-      test(task, "0", 0);
-      test(task, "42", 42);
-      test(task, "-13", -13);
-    }
-
-  private AbstractIntegerAssert<?> test(Task task, String in, int out) throws InterruptedException, ExecutionException, TimeoutException {
-    CompletableFuture<String> future = new CompletableFuture<>();
-    future.complete(in);
-    return assertThat(task.transform(future).get(1, TimeUnit.SECONDS)).isEqualTo(out);
-  }
 }

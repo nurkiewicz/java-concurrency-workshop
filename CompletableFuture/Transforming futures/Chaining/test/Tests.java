@@ -1,47 +1,42 @@
 import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 
 public class Tests {
-  @Test
-  public void testSolution() throws ExecutionException, InterruptedException, TimeoutException {
-    test(BigDecimal.ONE);
-    test(BigDecimal.ZERO);
-    test(BigDecimal.TEN);
-  }
 
-  private void test(BigDecimal val) throws InterruptedException, ExecutionException, TimeoutException {
-    Task task = new MyTask(val);
-    Assertions.assertThat(task.todo().get(1, TimeUnit.SECONDS)).isEqualTo(val);
-  }
+	private static final LocalDate DATE = LocalDate.MIN;
 
-  private static class MyTask extends Task {
+	@ParameterizedTest
+	@ValueSource(ints = {0, 1, 10})
+	public void testSolution(int x) throws Exception {
+		BigDecimal val = BigDecimal.valueOf(x);
+		Task task = new MyTask(val);
+		Assertions.assertThat(task.todo(DATE).get(1, TimeUnit.SECONDS)).isEqualTo(val);
+	}
 
-    private final BigDecimal result;
+	private static class MyTask extends Task {
 
-    private MyTask(BigDecimal result) {
-      this.result = result;
-    }
+		private final BigDecimal result;
 
-    @Override
-    CompletableFuture<ResultSet> loadFromDb() {
-      CompletableFuture<ResultSet> f = new CompletableFuture<>();
-      f.complete(Mockito.mock(ResultSet.class));
-      return f;
-    }
+		private MyTask(BigDecimal result) {
+			this.result = result;
+		}
 
-    @Override
-    CompletableFuture<BigDecimal> extract(ResultSet rs) {
-      CompletableFuture<BigDecimal> f = new CompletableFuture<>();
-      f.complete(result);
-      return f;
-    }
-  }
+		@Override
+		CompletableFuture<ResultSet> loadFromDb(LocalDate date) {
+			return new FutureFailingWhenBlocked<>(Mockito.mock(ResultSet.class));
+		}
+
+		@Override
+		CompletableFuture<BigDecimal> extract(ResultSet rs) {
+			return new FutureFailingWhenBlocked<>(result);
+		}
+	}
 }

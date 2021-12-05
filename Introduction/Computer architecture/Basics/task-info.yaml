@@ -2,3 +2,5 @@ type: theory
 files:
 - name: src/Main.java
   visible: true
+- name: tweet.png
+  visible: true
