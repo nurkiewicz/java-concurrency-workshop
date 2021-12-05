@@ -15,15 +15,15 @@ public class Tests {
   @Test
   public void testSolution() throws ExecutionException, InterruptedException, TimeoutException {
     CompletableFuture<LocalDateTime> future = new Task().combine(
-            CompletableFuture.completedFuture(LocalDate.of(2022, 1, 1)),
-            CompletableFuture.completedFuture(LocalTime.of(15, 10)));
+            new FutureFailingWhenBlocked<>(LocalDate.of(2022, 1, 1)),
+            new FutureFailingWhenBlocked<>(LocalTime.of(15, 10)));
     assertThat(future.get(1, TimeUnit.SECONDS)).isEqualTo(LocalDateTime.of(2022, 1, 1, 15, 10));
   }
 
   @Test
   @Timeout(1)
   public void testShouldNotBlock() {
-    new Task().combine(
+    CompletableFuture<LocalDateTime> future = new Task().combine(
             new CompletableFuture<>(),
             new CompletableFuture<>());
     //does not block
