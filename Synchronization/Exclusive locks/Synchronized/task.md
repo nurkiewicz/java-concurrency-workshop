@@ -1,0 +1,1 @@
+`synchronized` keyword can protect critical section.

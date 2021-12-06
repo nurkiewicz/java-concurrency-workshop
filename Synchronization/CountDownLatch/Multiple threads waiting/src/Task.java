@@ -1,15 +1,39 @@
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
+import java.lang.invoke.MethodHandles;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Task {
 
-	<T> List<Callable<T>> wrap(List<Callable<T>> actions) {
-		return actions.stream()
-				.map(action -> (Callable<T>) () -> {
-					return action.call();
-				})
-				.collect(Collectors.toList());
+	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	public static void main(String[] args) throws InterruptedException {
+		CountDownLatch latch = new CountDownLatch(1);
+
+		Supplier<Void> call = () -> {
+			log.info("Starting");
+			try {
+				latch.await();
+				log.info("Executing");
+			} catch (InterruptedException e) {
+				log.warn("Interrupted", e);
+			}
+			return null;
+		};
+
+		CompletableFuture.supplyAsync(call);
+		TimeUnit.SECONDS.sleep(1);
+		CompletableFuture.supplyAsync(call);
+		TimeUnit.SECONDS.sleep(1);
+		CompletableFuture.supplyAsync(call);
+		TimeUnit.SECONDS.sleep(1);
+		latch.countDown();
 	}
+
+
 
 }

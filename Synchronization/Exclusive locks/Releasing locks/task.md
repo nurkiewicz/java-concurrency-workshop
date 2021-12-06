@@ -1,1 +1,0 @@
-Make sure locks are released, no matter what happens in *critical section*.
