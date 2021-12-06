@@ -5,10 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class Task {
   CompletableFuture<LocalDateTime> combine(CompletableFuture<LocalDate> date, CompletableFuture<LocalTime> time) {
-//	  throw new UnsupportedOperationException("TODO");
+	  throw new UnsupportedOperationException("TODO");
 //	  return CompletableFuture.completedFuture(date.join().atTime(time.join()));
-	  return CompletableFuture.allOf(date, time)
-			  .thenApply(vd -> date.join().atTime(time.join()));
-
   }
 }

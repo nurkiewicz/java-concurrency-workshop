@@ -6,8 +6,7 @@ import java.util.concurrent.CompletableFuture;
 public abstract class   Task {
 
 	CompletableFuture<BigDecimal> todo(LocalDate date) throws Exception{
-//		throw new UnsupportedOperationException("TODO");
-		return loadFromDb(date).thenCompose(this::extract);
+		throw new UnsupportedOperationException("TODO");
 	}
 
 	abstract CompletableFuture<ResultSet> loadFromDb(LocalDate date);

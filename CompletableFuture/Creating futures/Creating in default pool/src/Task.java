@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 public class Task {
 
 	<T> CompletableFuture<T> async(Supplier<T> supplier) {
-//		throw new UnsupportedOperationException("TODO");
-		return CompletableFuture.supplyAsync(supplier);
+		throw new UnsupportedOperationException("TODO");
 	}
 }

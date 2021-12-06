@@ -6,11 +6,7 @@ public abstract class Task {
 	AtomicReference<Singleton> singleton = new AtomicReference<Singleton>();
 
 	public Singleton getOrCreate() {
-//		return singleton.updateAndGet(cur -> cur == null ? create() : cur);
-		if(singleton.get() == null) {
-			singleton.set(create());
-		}
-		return singleton.get();
+		return singleton.updateAndGet(cur -> cur == null ? create() : cur);
 	}
 
 	protected abstract Singleton create();

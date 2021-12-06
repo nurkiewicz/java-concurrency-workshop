@@ -10,10 +10,6 @@ public class Task6 {
 			while(Duration.between(start, Instant.now()).toMillis() < 1000) {
 				//doing work...
 				//TODO Here
-				if (Thread.currentThread().isInterrupted()) {
-					onInterrupt.run();
-					return null;
-				}
 			}
 			onComplete.run();
 			return null;

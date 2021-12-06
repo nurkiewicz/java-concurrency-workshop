@@ -19,11 +19,6 @@ class CallableWithTaskRuntime<T> implements Callable<T> {
 	@Override
 	public T call() throws Exception {
 		//TODO Implement here
-		started = Instant.now();
-		try {
-			return target.call();
-		} finally {
-			completed = Instant.now();
-		}
+		return target.call();
 	}
 }

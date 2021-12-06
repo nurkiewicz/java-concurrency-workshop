@@ -3,8 +3,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Task {
 
 	void next(AtomicLong in) {
-//		in.set(collatz(in.get()));
-		in.updateAndGet(this::collatz);
+		in.set(collatz(in.get()));
 	}
 
 	private long collatz(long in) {

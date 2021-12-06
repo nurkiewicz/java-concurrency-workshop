@@ -4,6 +4,6 @@ public class Tests {
   @Test
   public void testSolution() {
     // put your test here
-    //TODO
+    //TODO [TN]
   }
 }
