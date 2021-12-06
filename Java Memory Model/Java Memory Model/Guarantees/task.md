@@ -1,3 +1,3 @@
 # `volatile`
 
-# 
+# `synchronized`
