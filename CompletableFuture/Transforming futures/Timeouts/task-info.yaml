@@ -1,6 +1,6 @@
 type: edu
 files:
-- name: test/Tests8.java
-  visible: true
 - name: src/Task.java
+  visible: true
+- name: test/Tests8.java
   visible: true

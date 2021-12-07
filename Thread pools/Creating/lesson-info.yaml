@@ -1,6 +1,6 @@
 content:
 - Single thread pool
-- Single thread exeutor with limited queue
 - Fixed thread pool
+- Single thread exeutor with limited queue
 - Fixed thread pool with limited queue
 - Fixed thread pool with custom thread naming
