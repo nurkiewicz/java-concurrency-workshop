@@ -15,6 +15,7 @@ import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import io.micrometer.graphite.GraphiteConfig;
 import io.micrometer.graphite.GraphiteMeterRegistry;
 import org.assertj.core.api.WithAssertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class Tests implements WithAssertions {
 	}
 
 	@Test
-//	@Disabled
+	@Disabled
 	public void graphite() throws InterruptedException {
 		MeterRegistry registry = new GraphiteMeterRegistry(new GraphiteConfig() {
 			@Override

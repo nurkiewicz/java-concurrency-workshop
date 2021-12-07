@@ -1,22 +1,27 @@
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * <a href="https://javarevisited.blogspot.com/2014/05/double-checked-locking-on-singleton-in-java.html">https://javarevisited.blogspot.com/2014/05/double-checked-locking-on-singleton-in-java.html</a>
+ */
 public abstract class Task {
 
-	AtomicReference<Singleton> singleton = new AtomicReference<Singleton>();
+	private volatile Singleton singleton = null;
 
 	public Singleton getOrCreate() {
-//		return singleton.updateAndGet(cur -> cur == null ? create() : cur);
-		if(singleton.get() == null) {
-			singleton.set(create());
+		if (singleton == null) {
+			synchronized (this) {
+				if (singleton == null) {
+					singleton = create();
+				}
+			}
 		}
-		return singleton.get();
+		return singleton;
 	}
 
 	protected abstract Singleton create();
 
 	public Optional<Singleton> get() {
-		return Optional.ofNullable(singleton.get());
+		return Optional.ofNullable(singleton);
 	}
 
 }

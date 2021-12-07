@@ -31,7 +31,7 @@ public class Tests implements WithAssertions {
 
 	}
 
-	@RepeatedTest(100)
+	@RepeatedTest(10_000)
 	public void multiThreadTest() {
 		AtomicInteger invocationCounter = new AtomicInteger();
 		Task task = new Task() {
