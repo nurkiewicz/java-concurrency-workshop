@@ -10,6 +10,8 @@ Jobs with the same key cannot run concurrently.
 But jobs with different `key` are free to run at the same time.
 For example, `key=1` and `key=2` _should_ run concurrently.
 How do you implement such a consumer?
+Your implementation should support at least *10* concurrently running `CustomerJob`s.
+But jobs for the same key should be serialized.
 
 <div class="hint">
 Imagine you have a separate thread for each unique key.
