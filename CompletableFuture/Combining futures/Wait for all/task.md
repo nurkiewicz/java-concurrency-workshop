@@ -11,6 +11,8 @@ But it's completely broken
 
 <div class="hint">
 
+* Use `CompletableFuture.themCombine` OR:
+
 * Use `CompletableFuture.allOf()`.
 * You will also need `CompletableFuture.join()` but here you are guaranteed it won't block.
 
