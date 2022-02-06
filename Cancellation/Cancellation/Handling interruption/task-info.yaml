@@ -1,6 +1,0 @@
-type: edu
-files:
-- name: src/Task5.java
-  visible: true
-- name: test/Tests5.java
-  visible: true

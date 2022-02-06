@@ -1,27 +1,10 @@
-title: Java Core Concurrency
+title: Java Core Concurrency - Sample exam
 language: English
-summary: |
-  * Threads
-  * Thread pools
-  * Cancellation
-  * CompletableFuture
-  * Data structures
-  * Monitoring
-  * Synchronization
-  * Java Memory Model
+summary: This is just a sample exam to make sure you have your IDE set up correctly
 vendor:
   name: Tomasz Nurkiewicz
   url: https://nurkiewicz.com
 programming_language: Java
 programming_language_version: 11
-type: edu
 content:
 - Introduction
-- Threads
-- Thread pools
-- Cancellation
-- CompletableFuture
-- Data structures
-- Monitoring
-- Synchronization
-- Java Memory Model

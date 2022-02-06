@@ -1,1 +1,0 @@
-Use `ReentrantLock` to only allow one thread in *critical section*.

@@ -1,2 +1,0 @@
-# `AtomicInteger.incrementAndGet()`
-

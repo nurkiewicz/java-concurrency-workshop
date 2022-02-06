@@ -1,1 +1,0 @@
-Create a new `CompletableFuture` running in a specified thread pool.
