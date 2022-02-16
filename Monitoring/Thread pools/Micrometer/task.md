@@ -7,7 +7,7 @@ As a bonus you can try to run this container and configure Graphite integration.
 Once done, you should see graph of `ExecutorSerivce` metrics.
 
 ```bash
-docker run -d\                                                                                                                                       20:15:42
+docker run -d \
  --name graphite\
  -p 80:80\
  -p 81:81\
