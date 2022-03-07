@@ -28,7 +28,7 @@ subprojects {
     dependencies {
         implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
         implementation 'org.assertj:assertj-core:3.22.0'
-        implementation 'ch.qos.logback:logback-classic:1.2.10'
+        implementation 'ch.qos.logback:logback-classic:1.2.11'
         implementation 'com.google.guava:guava:31.0.1-jre'
         implementation 'org.mockito:mockito-core:4.3.1'
         implementation 'org.awaitility:awaitility:4.1.1'
