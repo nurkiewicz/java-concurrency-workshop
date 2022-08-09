@@ -32,7 +32,7 @@ subprojects {
         implementation 'com.google.guava:guava:31.1-jre'
         implementation 'org.mockito:mockito-core:4.4.0'
         implementation 'org.awaitility:awaitility:4.2.0'
-        implementation 'io.micrometer:micrometer-registry-graphite:1.8.4'
+        implementation 'io.micrometer:micrometer-registry-graphite:1.9.3'
 
     }
 
